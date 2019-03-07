@@ -4,7 +4,7 @@ subprojects {
 
     task javadocJar( type: Jar, dependsOn: javadoc ) {
         from javadoc.destinationDir
-        archiveClassifier = 'javadoc'
+        classifier = 'javadoc'
     }
 
     artifacts {
@@ -15,7 +15,7 @@ subprojects {
         repositories {
             ivy {
                 url = "${rootProject.buildDir}/ivy-artifacts"
-                patternLayout {
+                layout 'pattern', {
                     artifact '[organisation]/[revision]/[module]/[artifact]-[revision](-[classifier]).[ext]'
                     ivy '[organisation]/[revision]/[module]/ivy.xml'
                 }
