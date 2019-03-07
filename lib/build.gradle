@@ -1,0 +1,5 @@
+apply plugin: 'java'
+
+description = 'Support library'
+group = 'com.test.lib'
+version = '1.0'

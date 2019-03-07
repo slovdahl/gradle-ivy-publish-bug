@@ -1,0 +1,4 @@
+rootProject.name = 'gradle-ivy-publish-bug'
+
+include 'lib'
+include 'app'

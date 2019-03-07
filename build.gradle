@@ -1,0 +1,39 @@
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'ivy-publish'
+
+    task javadocJar( type: Jar, dependsOn: javadoc ) {
+        from javadoc.destinationDir
+        archiveClassifier = 'javadoc'
+    }
+
+    artifacts {
+        archives javadocJar
+    }
+
+    publishing {
+        repositories {
+            ivy {
+                url = "${rootProject.buildDir}/ivy-artifacts"
+                patternLayout {
+                    artifact '[organisation]/[revision]/[module]/[artifact]-[revision](-[classifier]).[ext]'
+                    ivy '[organisation]/[revision]/[module]/ivy.xml'
+                }
+            }
+        }
+        publications {
+            ivy(IvyPublication) {
+                from components.java
+
+                configurations {
+                    javadoc {}
+                }
+
+                artifact(javadocJar) {
+                    type = 'javadoc'
+                    conf = 'javadoc'
+                }
+            }
+        }
+    }
+}

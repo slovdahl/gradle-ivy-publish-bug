@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+description = 'The main App'
+group = 'com.test.app'
+version = '1.1'
+
+dependencies {
+    compile project( ':lib' )
+}
